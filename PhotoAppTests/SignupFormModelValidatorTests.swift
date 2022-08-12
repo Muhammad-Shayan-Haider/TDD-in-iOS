@@ -74,9 +74,18 @@ class SignupFormModelValidatorTests: XCTestCase {
     
     func testSignupFormValidator_WhenValidPasswordProvided_ShouldReturnTrue() {
         // When
+        let isPasswordValid = sut.isPasswordValid(password: "Wertwe123")
+        
+        // Then
+        XCTAssertTrue(isPasswordValid, "Password is valid!")
+    }
+    
+    func testSignupFormValidator_WhenTooShortPasswordProvided_ShouldReturnFalses() {
+        // When
         let isPasswordValid = sut.isPasswordValid(password: "")
         
-        
+        // Then
+        XCTAssertFalse(isPasswordValid, "Password is too short!")
     }
 
 }
