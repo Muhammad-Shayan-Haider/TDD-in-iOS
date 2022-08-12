@@ -111,5 +111,21 @@ class SignupFormModelValidatorTests: XCTestCase {
         // Then
         XCTAssertFalse(isEmailValid, "Email is invalid!")
     }
+    
+    func testSignupFormModelValidator_WhenEqualPasswordsProvided_ShouldReturnTrue() {
+        // When
+        let doPasswordsMatch = sut.doPasswordsMatch(password: "", repeatPassword: "")
+        
+        // Then
+        XCTAssertTrue(doPasswordsMatch, "Passwords match!")
+    }
+    
+    func testSignupFormModelValidator_WhenNotMatchingPasswordsProvided_ShouldReturnFalse() {
+        // When
+        let doPasswordsMatch = sut.doPasswordsMatch(password: "123123", repeatPassword: "23424")
+        
+        // Then
+        XCTAssertFalse(doPasswordsMatch, "Passwords do not match!")
+    }
 
 }
