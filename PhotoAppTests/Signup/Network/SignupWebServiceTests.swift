@@ -78,4 +78,18 @@ class SignupWebServiceTests: XCTestCase {
         
         self.wait(for: [expectation], timeout: 2)
     }
+    
+    func testSignupWebService_WhenURLRequestFails_ReturnsErrorMessageDescription() {
+        // Given
+        let expectation = self.expectation(description: "A failed request expectation")
+        let errorDescription = "A localized description of an error"
+        MockURLProtocol.error = SignupError.failedRequest(description: errorDescription)
+        // When
+        sut.signup(withForm: signupFormRequestModel) { (signupResponseModel, error) in
+            XCTAssertEqual(error, SignupError.failedRequest(description: errorDescription))
+            expectation.fulfill()
+        }
+        
+        self.wait(for: [expectation], timeout: 2)
+    }
 }
