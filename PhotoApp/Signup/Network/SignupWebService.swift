@@ -19,7 +19,7 @@ class SignupWebService {
     
     func signup(withForm formModel: SignupFormRequestModel, completionHandler: @escaping (SignupResponseModel?, SignupError?) -> Void) {
         guard let url = URL(string: urlString) else {
-            // TODO: create a unit test to test that url is nil or not
+            completionHandler(nil, SignupError.invalidURLError)
             return
         }
         var request = URLRequest(url: url)
@@ -29,7 +29,6 @@ class SignupWebService {
         request.httpBody = try? JSONEncoder().encode(formModel)
         
         let dataTask = urlSession.dataTask(with: request) { (data, response, error) in
-            // Write a new unit test to handle data and error here.
             
             if let data = data, let signupResponseModel = try? JSONDecoder().decode(SignupResponseModel.self, from: data) {
                 completionHandler(signupResponseModel, nil)
