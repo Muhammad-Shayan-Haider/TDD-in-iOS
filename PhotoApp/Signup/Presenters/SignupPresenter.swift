@@ -44,6 +44,8 @@ class SignupPresenter {
         webService.signup(withForm: requestModel) { [weak self] (signupResponseModel, error) in
             if let _ = signupResponseModel {
                 self?.delegate?.successfulSignup()
+            } else if let error = error {
+                self?.delegate?.errorHandler(error: error)
             }
         }
     }
