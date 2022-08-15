@@ -9,25 +9,31 @@ import XCTest
 @testable import PhotoApp
 
 class SignupPresenterTests: XCTestCase {
-
+    
+    var signupFormModel: SignupFormModel!
+    var mockSignupModelValidator: MockSignupModelValidator!
+    var mockSignupWebService: MockSignupWebService!
+    var sut: SignupPresenter!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testSignupPresenter_WhenInformationProvided_WillValidateEachProperty() {
-        // Given
-        let signupFormModel = SignupFormModel(firstName: "Sergey",
+        signupFormModel = SignupFormModel(firstName: "Sergey",
                                               lastName: "Karg",
                                               email: "test@test.com",
                                               password: "124123",
                                               repeatPassword: "124123")
-        let mockSignupModelValidator = MockSignupModelValidator()
-        let mockSignupWebService = MockSignupWebService()
-        let sut = SignupPresenter(formModelValidator: mockSignupModelValidator, webService: mockSignupWebService)
+        mockSignupModelValidator = MockSignupModelValidator()
+        mockSignupWebService = MockSignupWebService()
+        sut = SignupPresenter(formModelValidator: mockSignupModelValidator, webService: mockSignupWebService)
+    }
+
+    override func tearDown() {
+        signupFormModel = nil
+        mockSignupModelValidator = nil
+        mockSignupWebService = nil
+        sut = nil
+    }
+
+    func testSignupPresenter_WhenInformationProvided_WillValidateEachProperty() {
         // When
         sut.processUserSignup(formModel: signupFormModel)
         // Then
@@ -39,16 +45,6 @@ class SignupPresenterTests: XCTestCase {
     }
     
     func testSignupPresenter_WhenGivenValidFormModel_ShouldCallSignupMethod() {
-        // Given
-        let signupFormModel = SignupFormModel(firstName: "Sergey",
-                                              lastName: "Karg",
-                                              email: "test@test.com",
-                                              password: "124123",
-                                              repeatPassword: "124123")
-        let mockSignupModelValidator = MockSignupModelValidator()
-        let mockSignupWebService = MockSignupWebService()
-        let sut = SignupPresenter(formModelValidator: mockSignupModelValidator, webService: mockSignupWebService)
-         
         // When
         sut.processUserSignup(formModel: signupFormModel)
         
