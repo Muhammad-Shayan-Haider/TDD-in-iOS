@@ -24,13 +24,19 @@ class SignupViewControllerTests: XCTestCase {
         storyBoard = nil
     }
     
-    func testSignupViewController_WhenCreated_HasRequiredTextFieldsEmpty() {
+    func testSignupViewController_WhenCreated_HasRequiredTextFieldsEmpty() throws {
         // Then
-        XCTAssertEqual(sut?.userFirstNameTextField.text, "")
-        XCTAssertEqual(sut?.userLastNameTextField.text, "")
-        XCTAssertEqual(sut?.userEmailTextField.text, "")
-        XCTAssertEqual(sut?.userPasswordTextField.text, "")
-        XCTAssertEqual(sut?.userRepeatPasswordTextField.text, "")
+        // Testing that whether the textField is nil or not.
+        let firstNameTextField = try XCTUnwrap(sut.userFirstNameTextField, "The firstNameTextField is not connected to an IBOutlet")
+        let lastNameTextField = try XCTUnwrap(sut.userFirstNameTextField, "The lastNameTextField is not connected to an IBOutlet")
+        let emailTextField = try XCTUnwrap(sut.userFirstNameTextField, "The emailTextField is not connected to an IBOutlet")
+        let passwordTextField = try XCTUnwrap(sut.userFirstNameTextField, "The passwordTextField is not connected to an IBOutlet")
+        let repeatPasswordTextField = try XCTUnwrap(sut.userFirstNameTextField, "The repeatPasswordTextField is not connected to an IBOutlet")
+        XCTAssertEqual(firstNameTextField.text, "")
+        XCTAssertEqual(lastNameTextField.text, "")
+        XCTAssertEqual(emailTextField.text, "")
+        XCTAssertEqual(passwordTextField.text, "")
+        XCTAssertEqual(repeatPasswordTextField.text, "")
     }
 
 }
