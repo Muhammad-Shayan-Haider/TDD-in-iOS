@@ -38,5 +38,17 @@ class SignupViewControllerTests: XCTestCase {
         XCTAssertEqual(passwordTextField.text, "")
         XCTAssertEqual(repeatPasswordTextField.text, "")
     }
+    
+    func testViewController_WhenCreated_HasSignupButtonAndAction() throws {
+        // Given
+        let signupButton: UIButton = try XCTUnwrap(sut.signupButton, "Signup button does not have outlet")
+        
+        // When
+        let signupButtonActions = try XCTUnwrap(signupButton.actions(forTarget: sut, forControlEvent: .touchUpInside), "Signup button does not have the action")
+        
+        // Then
+        XCTAssertEqual(signupButtonActions.count, 1)
+        XCTAssertEqual(signupButtonActions.first, "signupButtonTapped:", "There is no action named signupButtonTapped")
+    }
 
 }

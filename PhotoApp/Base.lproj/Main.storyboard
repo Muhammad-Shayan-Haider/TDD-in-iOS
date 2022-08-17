@@ -46,11 +46,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxy-3u-28x">
+                                <rect key="frame" x="172" y="422" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="signupButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sKb-8F-w1K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="signupButton" destination="Xxy-3u-28x" id="6mb-XN-e1f"/>
                         <outlet property="userEmailTextField" destination="5l4-Qw-jK3" id="yg0-G0-Gnd"/>
                         <outlet property="userFirstNameTextField" destination="SRH-pS-sey" id="Wdz-TE-oZn"/>
                         <outlet property="userLastNameTextField" destination="vHi-O3-8pX" id="2ZT-JM-Nax"/>
