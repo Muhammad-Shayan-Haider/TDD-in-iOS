@@ -79,6 +79,30 @@ class SignupFlowUITests: XCTestCase {
         // Then
         XCTAssertTrue(app.alerts["errorAlertDialog"].waitForExistence(timeout: 1))
     }
+    
+    func testViewController_WhenValidFormSubmitted_PresentsSuccessAlert() {
+        // Given
+        firstName.tap()
+        firstName.typeText("Sergey")
+        
+        lastName.tap()
+        lastName.typeText("Kargalov")
+        
+        email.tap()
+        email.typeText("test@test.com")
+        
+        password.tap()
+        password.typeText("Signs12345678")
+        
+        repeatPassword.tap()
+        repeatPassword.typeText("Signs12345678")
+        
+        // When
+        signupButton.tap()
+        
+        // Then
+        XCTAssertTrue(app.alerts["successAlertDialog"].waitForExistence(timeout: 2))
+    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {

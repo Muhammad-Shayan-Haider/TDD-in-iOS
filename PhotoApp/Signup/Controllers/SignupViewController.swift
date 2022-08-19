@@ -42,7 +42,13 @@ class SignupViewController: UIViewController {
 
 extension SignupViewController: SignupViewDelegate {
     func successfulSignup() {
-        // TODO:
+        let alert = UIAlertController(title: "Success", message: "You have signed up", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        DispatchQueue.main.async {
+            alert.view.accessibilityIdentifier = "successAlertDialog"
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func errorHandler(error: SignupError) {
