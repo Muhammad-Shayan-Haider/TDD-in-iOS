@@ -27,12 +27,12 @@ class SignupFlowUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let firstName = app.textFields["First name"]
-        let lastName = app.textFields["Last name"]
-        let email = app.textFields["Email"]
-        let password = app.secureTextFields["Password"]
-        let repeatPassword = app.secureTextFields["Repeat password"]
-        let signupButton = app/*@START_MENU_TOKEN@*/.staticTexts["Signup"]/*[[".buttons[\"Signup\"].staticTexts[\"Signup\"]",".staticTexts[\"Signup\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let firstName = app.textFields["firstNameTextField"]
+        let lastName = app.textFields["lastNameTextField"]
+        let email = app.textFields["emailTextField"]
+        let password = app.secureTextFields["passwordTextField"]
+        let repeatPassword = app.secureTextFields["repeatPasswordTextField"]
+        let signupButton = app.staticTexts["signupButton"]
             
         XCTAssertTrue(firstName.isEnabled)
         XCTAssertTrue(lastName.isEnabled)
